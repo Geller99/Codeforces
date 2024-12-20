@@ -1,53 +1,48 @@
+/* Problem Statement: 
+   Given an integer array nums representing the amount of money of each house,
+   return the maximum amount of money you can rob tonight without alerting the police.
+*/
 
+function rob(nums: number[]): number {
+   if (nums.length === 0) return 0; // No houses to rob
+   if (nums.length === 1) return nums[0]; // Only one house to rob
 
-const rob = (nums: number[]):number => {
-    if (!nums) return 0;
-    if (nums.length === 1) return nums[0];
+   // Initialize variables to track the maximum sums
+   let prevMax = 0; // Maximum sum without robbing the current house
+   let currMax = 0; // Maximum sum including the current house
 
-    let prevTwo = nums[0]              // store the first house as a "choice"
-    let prevOne = Math.max(nums[0], nums[1])   // rob the house with more funds between houses 1 and two
+   for (let num of nums) {
+       // Temporarily store currMax before updating it
+       let temp = currMax;
 
-    for(let i = 2; i < nums.length; i++) {  // starting from house 3, ROB or SKIP based on previous two houses
-        let current = Math.max(nums[i] + prevTwo, prevOne);  // 
+       // Update currMax to include the current house OR skip it
+       currMax = Math.max(prevMax + num, currMax);
 
-        prevTwo = prevOne
-        prevOne = current;
-    }
+       // Update prevMax to the old currMax
+       prevMax = temp;
+   }
 
-    return prevOne;
+   // Return the final maximum sum
+   return currMax;
 }
 
 
+/*  
+   Initialize Edge Cases:
+    - If nums is empty, return 0 (nothing to rob).
+    - If nums has only one house, return nums[0].
 
-/*
-House Robber - Dynamic Programming Solution
-
-Core Concept:
-At each house, we're using previous optimal solutions to make current decisions.
-
-Problem Framework:
-- Given: Array of house values
-- Goal: Find maximum possible loot without triggering security (no adjacent houses)
-- At each house: Choose between "rob" or "skip"
-  - If rob: MUST skip next house
-  - If skip: CAN rob next house
-
-Solution Strategy:
-1. Store optimal values for first two houses:
-   - prev2 = first house value
-   - prev1 = max(first house, second house)
-
-2. Starting from third house, at each step compare:
-   - Rob current house + best result from two houses back
-   - vs
-   - Skip current house and keep best result from previous house
-
-3. Keep track of only two values:
-   - prev2 (best result ending two houses back)
-   - prev1 (best result from previous house)
+   Set Up Variables:
+    - Use prevMax to represent the maximum sum up to the previous house.
+    - Use currMax to represent the maximum sum up to the current house.
    
-This is DP because we:
-- Store and use previous optimal solutions
-- Build current optimal solution from these stored values
-- Only need to look back 2 steps at any point
+   Iterate Through Houses:
+     For each house:
+      - Calculate the new currMax as the maximum of:
+      - prevMax + nums[i] (robbing the current house).
+      - currMax (skipping the current house).
+      - Update prevMax to the old currMax.
+
+   Return the Result:
+     At the end, currMax will contain the maximum amount of money that can be robbed.
 */
