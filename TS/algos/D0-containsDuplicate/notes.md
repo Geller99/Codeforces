@@ -35,3 +35,15 @@ test('should return true for array with negative duplicates', () => {
 - Time: O(n)
 - Space: O(n)
 
+
+
+## Alternative Solutions
+```
+function containsDuplicate(nums: number[]): boolean {
+    const setNums = new Set(nums);
+    return nums.length !== setNums.size;
+};
+
+```
+
+Essentially, input everything in nums into a set...check if the set has the same size as the original array...neat!
