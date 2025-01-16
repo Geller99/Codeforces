@@ -3,9 +3,8 @@
 
 /**
  * 
- * @param nums
  * 
- * Goal is to check if a valid string is a palindrome or not
+ * Goal is to check if a valid string is a palindrome or not via the two pointer technique 
  */
 
 const validPalindrome = (str: string) => {

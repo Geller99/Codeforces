@@ -1,5 +1,3 @@
-
-
 {
   "compilerOptions": {
     "target": "es2020",
@@ -13,8 +11,8 @@
     "moduleResolution": "node"
   },
   "include": [
-    "algos/**/*.ts",
-    "algos/**/*.test.ts"
+    "./algos/**/*.ts",
+    "./algos/**/*.test.ts"
   ],
   "exclude": [
     "node_modules"
