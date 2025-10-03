@@ -1,3 +1,3 @@
-module exo
+module golang
 
 go 1.23.2

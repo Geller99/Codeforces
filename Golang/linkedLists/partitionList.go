@@ -1,6 +1,6 @@
 package linkedlists
 
-import "exo/common"
+import "golang/common"
 
 
 func partition(head *common.ListNode, x int) *common.ListNode {

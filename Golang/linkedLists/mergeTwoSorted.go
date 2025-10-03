@@ -1,6 +1,6 @@
 package linkedlists
 
-import "exo/common"
+import "golang/common"
 
 
 func MergeTwoLists (listOne *common.ListNode, listTwo *common.ListNode) *common.ListNode {
